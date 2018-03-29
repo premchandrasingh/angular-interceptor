@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+
+    <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" [ngClass]="{
+  'is-invalid': !loginForm.valid && submitted}">
+      <div class="form-group row" [ngClass]="{
+    'is-invalid': email.invalid && (email.dirty || email.touched),
+    'is-valid': email.valid && (email.dirty || email.touched)}">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="email" required placeholder="Email as user@email.com">
+          <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+            <p *ngIf="email.errors.required">Email is required</p>
+            <p *ngIf="email.errors.pattern">The email address must contain at least the @ character</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{
+    'is-invalid': password.invalid && (password.dirty || password.touched),
+    'is-valid': password.valid && (password.dirty || password.touched)}">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" formControlName="password" required placeholder="Password as password">
+          <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+            <p *ngIf="password.errors.required">Password is required</p>
+            <p *ngIf="password.errors.minlength">Password must be 6 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}
+              characters </p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-6 col-form-label"></label>
+        <div class="col-sm-6">
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </div>
+      </div>
+
+      <!-- <pre>{{loginForm.value | json}}</pre> -->
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+      <button type="button" class="btn btn-success" (click)="fillRightCredential()">Fill Right UserName and Password</button>
+      <button type="button" class="btn btn-warning" (click)= "fillWrongCredential()">Fill Wrong UserName and Password</button>
+  </div>
+
+  <div class="col-sm-2"></div>
+</div>

@@ -1,0 +1,11 @@
+body {
+  padding-top: 5rem;
+}
+
+.is-invalid .form-control {
+  border-color: #dc3545;
+}
+
+.is-valid .form-control {
+  border-color: #28a745;
+}
